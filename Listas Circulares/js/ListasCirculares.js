@@ -42,34 +42,6 @@ class ListasCirculares{
         return this;
     }
 
-    eliminarNodoF() {
-        if (!this.head) return undefined;
-        let nodoVisitado = this.head;
-        let nuevaColaLista = nodoVisitado;
-        while (nodoVisitado.next) {
-            nuevaColaLista = nodoVisitado;
-            nodoVisitado = nodoVisitado.next;
-        }
-        this.tail = nuevaColaLista;
-        this.tail.next = this.head;
-        this.length--;
-        if (this.length === 0) {
-            this.head = null;
-            this.tail = null;
-        }
-        return nodoVisitado;
-    }
-    eliminarNodoI() {
-        if (!this.head) return undefined;
-        let cabezaactual = this.head;
-        this.head = cabezaactual.next;
-        this.length--;
-        if (this.length === 0) {
-            this.head = null;
-            this.tail = null;
-        }
-        return cabezaactual;
-    }
 
 /* BUSCA un nodo por el PUNTERO(NodoBuscado) */
 getValorNodo(nodoBuscado) {
@@ -88,7 +60,52 @@ getValorNodo(nodoBuscado) {
 }
 
 
+    removerPorValor(value){
 
+        let inicio = this.head;
+        let aux = null;
+        let siguiente = null;
+
+        //
+        if(this.head.value === value){
+            inicio = this.head.next;
+            this.head = inicio;
+            this.tail.next = this.head;
+        }else{
+            aux = this.head;
+            while(aux.next.value != value){
+                aux = aux.next;
+            }
+            if(aux.next == this.tail){
+                this.tail = aux;
+                this.tail.next = this.head;
+            }else{
+                siguiente = aux.next;
+                aux.next = siguiente.next;
+            }
+            this.length--;
+        }
+        
+    }
+    
+        modificarNodo(nodoBuscado, value){
+    	let nodoActual = newNode;
+    	nodoActual = this.head;
+
+    	let encontrado=false;
+
+    	if(nodoActual!=null){
+    		do{
+    			if (nodoActual.value === nodoBuscado) {
+    				nodoActual.value = value;
+    				encontrado = true;
+    			}
+    			nodoActual= nodoActual.next;
+    		}while(nodoActual!=this.head && encontrado !=true);
+    	}
+    }
+    
+    
     imprimirArrayList() {
         let arregloNodos = [];
         let nodoVisitado = this.head;
