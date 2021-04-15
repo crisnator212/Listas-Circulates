@@ -27,20 +27,6 @@ class ListasCirculares{
         return this;
     }
 
-    añadirNodoI(valor) {
-        let newNode = new Node(valor);
-        if (!this.head) {
-            this.head = newNode;
-            this.tail = this.head;
-            this.tail.next = this.head
-        } else {
-            newNode.next = this.head;
-            this.head = newNode;
-            this.tail.next = this.head
-        }
-        this.length++;
-        return this;
-    }
 
 
 /* BUSCA un nodo por el PUNTERO(NodoBuscado) */
